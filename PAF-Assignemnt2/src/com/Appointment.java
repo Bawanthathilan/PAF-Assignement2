@@ -205,7 +205,7 @@ public class Appointment {
 					}
 
 					// create a prepared statement
-					String query = "delete from doctors where AppID=?";
+					String query = "delete from appointment where AppID=?";
 
 					PreparedStatement preparedStmt = con.prepareStatement(query);
 
