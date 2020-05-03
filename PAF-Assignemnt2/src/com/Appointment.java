@@ -75,7 +75,7 @@ public class Appointment {
 				return output;
 			}
 			
-			//=======================================VIEW ALL DOCTORS METHOD=======================================================
+			//=======================================VIEW ALL APPOINTMENT METHOD=======================================================
 			
 			public String readAppointment() {
 				String output = "";
@@ -98,24 +98,26 @@ public class Appointment {
 					while (rs.next()) {
 						String appID = Integer.toString(rs.getInt("appID"));
 						String fullName = rs.getString("fullName");
-						String nic = rs.getString("NIC");
-						String address = rs.getString("Address");
-						String mobNo = Integer.toString(rs.getInt("MobileNo"));
-						String email = rs.getString("Email");
-						String spec = rs.getString("Specialization");
-						String hosp = rs.getString("HospitalName");
-						String dept = rs.getString("DepartmentName");
+						String mobile = Integer.toString(rs.getInt("mobile"));
+						String email = rs.getString("email");
+						String nic = rs.getString("nic");
+						String address = rs.getString("address");
+						String date = rs.getString("date");
+						String hospName = rs.getString("hospName");
+						String docName = rs.getString("docName");
+						String msg = rs.getString("msg");
 
 						// Add into the html table
-						output += "<tr><td><input id='hidDoctorIDUpdate' name='hidDoctorIDUpdate' type='hidden' value='" +docID+ "'>" + docName + "</td>";
+						output += "<tr><td><input id='hidDoctorIDUpdate' name='hidDoctorIDUpdate' type='hidden' value='" +appID+ "'>" + fullName + "</td>";
 						//output += "<tr><td>" + docName + "</td>";
+						output += "<td>" + mobile + "</td>";
+						output += "<td>" + email + "</td>";
 						output += "<td>" + nic + "</td>";
 						output += "<td>" + address + "</td>";
-						output += "<td>" + mobNo + "</td>";
-						output += "<td>" + email + "</td>";
-						output += "<td>" + spec + "</td>";
-						output += "<td>" + hosp + "</td>";
-						output += "<td>" + dept + "</td>";
+						output += "<td>" + date + "</td>";
+						output += "<td>" + hospName + "</td>";
+						output += "<td>" + docName + "</td>";
+						output += "<td>" + msg + "</td>";
 						
 						// buttons    
 						/*output += "<td><input name='btnUpdate' type='button\" value='Update\" class='btnUpdate btn btn-secondary'></td>"
@@ -125,7 +127,7 @@ public class Appointment {
 
 						// buttons     
 						output += "<td><input name='btnUpdate' type='button' value='Update' class='btnUpdate btn btn-secondary'></td>"       
-								+ "<td><input name='btnRemove' type='button' value='Remove' class='btnRemove btn btn-danger' data-itemid='" + docID + "'>" + "</td></tr>"; 
+								+ "<td><input name='btnRemove' type='button' value='Remove' class='btnRemove btn btn-danger' data-itemid='" + appID + "'>" + "</td></tr>"; 
 						
 					}
 
@@ -134,7 +136,7 @@ public class Appointment {
 					// Complete the html table
 					output += "</table>";
 				} catch (Exception e) {
-					output = "Error while reading the items.";
+					output = "Error while reading the appointments.";
 					System.err.println(e.getMessage());
 				}
 
@@ -148,7 +150,7 @@ public class Appointment {
 			
 			//========================================UPDATE DOCTORS METHOD============================================================
 			
-			public String updateDoctor(String ID, String docName, String nic, String address, String mobNo, String email, String spec, String hosp, String dept ) {
+			public String updateDoctor(String appID, String fullName, String nic, String address, String mobNo, String email, String spec, String hosp, String dept ) {
 				String output = "";
 
 				try {
@@ -159,12 +161,12 @@ public class Appointment {
 					}
 
 					// create a prepared statement
-					String query = "UPDATE doctors SET DoctorName=?,NIC=?,Address=?,MobileNo=?,Email=?,Specialization=?,HospitalName=?,DepartmentName=?WHERE DoctorID=?";
+					String query = "UPDATE appointment SET DoctorName=?,NIC=?,Address=?,MobileNo=?,Email=?,Specialization=?,HospitalName=?,DepartmentName=?WHERE appID=?";
 
 					PreparedStatement preparedStmt = con.prepareStatement(query);
 
 					// binding values
-					preparedStmt.setString(1, docName);
+					preparedStmt.setString(1, fullName);
 					preparedStmt.setString(2, nic);
 					preparedStmt.setString(3, address);
 					preparedStmt.setInt(4, Integer.parseInt(mobNo));
@@ -178,20 +180,20 @@ public class Appointment {
 					preparedStmt.execute();
 					con.close();
 
-					String newDoctor = readDoctors();    
-					output = "{\"status\":\"success\", \"data\": \"" + newDoctor + "\"}";
+					String newAppointment = readAppointment();    
+					output = "{\"status\":\"success\", \"data\": \"" + newAppointment + "\"}";
 					
 				} catch (Exception e) {
-					output = "{\"status\":\"error\", \"data\":\"Error while updating doctor.\"}";
+					output = "{\"status\":\"error\", \"data\":\"Error while updating appointment.\"}";
 					System.err.println(e.getMessage());
 				}
 
 				return output;
 			}
 			
-			//========================================DELETE DOCTORS METHOD============================================================
+			//========================================DELETE APPOINTMENT METHOD============================================================
 			
-			public String deleteDoctor(String appID) {
+			public String deleteAppointment(String appID) {
 				String output = "";
 
 				try {
