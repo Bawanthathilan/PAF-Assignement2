@@ -1,4 +1,5 @@
 <%@page import="com.Appointment"%>
+<%@page import="com.AppointmentApi"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -17,7 +18,7 @@
 			<div class="col-8">       
 				<h1 class="m-3">Appointment Management</h1>        
 				
-				<form id="formAppointment" name="formDoctor" method="post" action="appointment.jsp">  
+				<form id="formAppointment" name="formAppointment" method="post" action="appointment.jsp">  
 					FullName:  
 					<input id="name" name="name" type="text" class="form-control form-control-sm">  
 					
@@ -57,7 +58,7 @@
 					 
 					 <br>  
 					 <input id="btnSave" name="btnSave" type="button" value="Save" class="btn btn-primary">  
-					 <input type="hidden" id="hidDoctorIDSave" name="hidDoctorIDSave" value=""> 
+					 <input type="hidden" id="hidappIDSave" name="hidappIDSave" value=""> 
 					 
 				</form> 
 				
@@ -67,7 +68,7 @@
 				<br>  
 				<div id="divItemsGrid">   
 					<%    
-						Appointment docObj = new Appointment();
+						Appointment appObj = new Appointment();
 						out.print(appObj.readAppointment());   
 					%>  
 					

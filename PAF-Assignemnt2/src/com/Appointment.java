@@ -150,7 +150,7 @@ public class Appointment {
 			
 			//========================================UPDATE APPOINTMENT METHOD============================================================
 			
-			public String updateDoctor(String appID, String fullName, String mobile, String email, String nic, String address, String date, String hospName, String docName , String msg ) {
+			public String updateAppointment(String appID, String fullName, String mobile, String email, String nic, String address, String date, String hospName, String docName , String msg ) {
 				String output = "";
 
 				try {

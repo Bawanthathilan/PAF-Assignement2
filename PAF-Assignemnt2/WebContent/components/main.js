@@ -40,22 +40,10 @@ function validateItemForm() {
 	
 	// NAME  
 	if ($("#name").val().trim() == "")  {   
-		return "Insert Name.";  
-		
-	} 
-	 
-	 // NIC  
-	if ($("#nic").val().trim() == "")  {   
-		return "Insert NIC.";  
+		return "Insert fullName.";  
 		
 	} 
 	
-	// ADDRESS  
-	if ($("#address").val().trim() == "")  {   
-		return "Insert Address.";  
-		
-	} 
-	 
 	 // MOBILE  
 	if ($("#mobile").val().trim() == "")  {   
 		return "Insert Mobile.";  
@@ -67,29 +55,49 @@ function validateItemForm() {
 	if (!$.isNumeric(tmpMobile))  {   
 		return "Insert a numerical value for Mobile Number.";  
 		
-	} 
-	
-	// EMAIL  
+	}
+	 
+	 // Email 
 	if ($("#email").val().trim() == "")  {   
 		return "Insert Email.";  
 		
 	} 
 	
-	// SPECIALIZATION  
-	if ($("#spec").val().trim() == "")  {   
-		return "Insert Specialization.";  
+	// NIC  
+	if ($("#nic").val().trim() == "")  {   
+		return "Insert NIC.";  
+		
+	} 
+	 
+	 
+	
+	// Address  
+	if ($("#address").val().trim() == "")  {   
+		return "Insert address.";  
 		
 	} 
 	
-	// HOSPITAL  
+	// Date  
+	if ($("#date").val().trim() == "")  {   
+		return "Insert date.";  
+		
+	} 
+	
+	// HOSPITALname  
 	if ($("#hospital").val().trim() == "")  {   
 		return "Insert Hospital Name.";  
 		
 	} 
 	
-	// DEPARTMENT  
-	if ($("#dept").val().trim() == "")  {   
-		return "Insert Department Name.";  
+	// DocName  
+	if ($("#doctor").val().trim() == "")  {   
+		return "Insert Doctor Name.";  
+		
+	} 
+	
+	// Msg 
+	if ($("#msg").val().trim() == "")  {   
+		return "Insert Message.";  
 		
 	} 
 	 
@@ -110,7 +118,7 @@ $(document).on("click", ".btnRemove", function(event) {
 //UPDATE========================================== 
 $(document).on("click", ".btnUpdate", function(event) {     
 	
-	$("#hidDoctorIDSave").val($(this).closest("tr").find('#hidDoctorIDUpdate').val());     
+	$("#hidappIDSave").val($(this).closest("tr").find('#hidappIDUpdate').val());     
 	$("#name").val($(this).closest("tr").find('td:eq(0)').text());    
 	$("#nic").val($(this).closest("tr").find('td:eq(1)').text());     
 	$("#address").val($(this).closest("tr").find('td:eq(2)').text());     

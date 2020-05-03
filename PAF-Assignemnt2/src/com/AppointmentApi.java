@@ -88,7 +88,7 @@ public class AppointmentApi extends HttpServlet {
 	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Map paras = getParasMap(request); 
 		 
-		 String output = appObj.updateAppointment(paras.get("hidappIDSave").toString(),     
+		 String output = appObj.updateAppointment(paras.get("hidppIDSave").toString(),     
 				 		paras.get("fullName").toString(),     
 				 		paras.get("mobile").toString(),        
 				 		paras.get("email").toString(),        
