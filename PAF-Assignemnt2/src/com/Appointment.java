@@ -148,9 +148,9 @@ public class Appointment {
 			
 			
 			
-			//========================================UPDATE DOCTORS METHOD============================================================
+			//========================================UPDATE APPOINTMENT METHOD============================================================
 			
-			public String updateDoctor(String appID, String fullName, String nic, String address, String mobNo, String email, String spec, String hosp, String dept ) {
+			public String updateDoctor(String appID, String fullName, String mobile, String email, String nic, String address, String date, String hospName, String docName , String msg ) {
 				String output = "";
 
 				try {
@@ -161,20 +161,21 @@ public class Appointment {
 					}
 
 					// create a prepared statement
-					String query = "UPDATE appointment SET DoctorName=?,NIC=?,Address=?,MobileNo=?,Email=?,Specialization=?,HospitalName=?,DepartmentName=?WHERE appID=?";
+					String query = "UPDATE appointment SET fullName=?,mobile=?,email=?,nic=?,address=?,date=?,hospName=?,docName=?,msg=?WHERE appID=?";
 
 					PreparedStatement preparedStmt = con.prepareStatement(query);
 
 					// binding values
 					preparedStmt.setString(1, fullName);
-					preparedStmt.setString(2, nic);
-					preparedStmt.setString(3, address);
-					preparedStmt.setInt(4, Integer.parseInt(mobNo));
-					preparedStmt.setString(5, email);
-					preparedStmt.setString(6, spec);
-					preparedStmt.setString(7, hosp);
-					preparedStmt.setString(8, dept);
-					preparedStmt.setInt(9, Integer.parseInt(ID));
+					preparedStmt.setInt(2,Integer.parseInt (mobile));
+					preparedStmt.setString(3, email);
+					preparedStmt.setString(4,nic);
+					preparedStmt.setString(5, address);
+					preparedStmt.setString(6, date);
+					preparedStmt.setString(7, hospName);
+					preparedStmt.setString(8, docName);
+					preparedStmt.setString(9, msg);
+					preparedStmt.setInt(10, Integer.parseInt(appID));
 
 					// execute the statement
 					preparedStmt.execute();
