@@ -108,7 +108,7 @@ public class Appointment {
 						String msg = rs.getString("msg");
 
 						// Add into the html table
-						output += "<tr><td><input id='hidDoctorIDUpdate' name='hidDoctorIDUpdate' type='hidden' value='" +appID+ "'>" + fullName + "</td>";
+						output += "<tr><td><input id='hidappIDUpdate' name='hidappIDUpdate' type='hidden' value='" +appID+ "'>" + fullName + "</td>";
 						//output += "<tr><td>" + docName + "</td>";
 						output += "<td>" + mobile + "</td>";
 						output += "<td>" + email + "</td>";

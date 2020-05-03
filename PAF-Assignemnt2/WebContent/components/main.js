@@ -127,7 +127,7 @@ $(document).on("click", ".btnUpdate", function(event) {
 	$("#date").val($(this).closest("tr").find('td:eq(5)').text()); 
 	$("#hospital").val($(this).closest("tr").find('td:eq(6)').text()); 
 	$("#doctor").val($(this).closest("tr").find('td:eq(7)').text()); 
-	$("#msg").val($(this).closest("tr").find('td:eq(7)').text()); 
+	$("#msg").val($(this).closest("tr").find('td:eq(8)').text()); 
 	
 	$("#alertSuccess").text("Updated successfully.");  
 	$("#alertSuccess").show(); 
