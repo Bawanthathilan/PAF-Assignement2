@@ -16,7 +16,7 @@
 			<div class="col-8">       
 				<h1 class="m-3">Appointment Management</h1>        
 				
-				<form id="formDoctor" name="formDoctor" method="post" action="doctors.jsp">  
+				<form id="formAppointment" name="formDoctor" method="post" action="appointment.jsp">  
 					FullName:  
 					<input id="name" name="name" type="text" class="form-control form-control-sm">  
 					
