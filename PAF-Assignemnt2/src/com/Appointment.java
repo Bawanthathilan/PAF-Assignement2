@@ -96,8 +96,8 @@ public class Appointment {
 
 					// iterate through the rows in the result set
 					while (rs.next()) {
-						String docID = Integer.toString(rs.getInt("DoctorID"));
-						String docName = rs.getString("DoctorName");
+						String appID = Integer.toString(rs.getInt("appID"));
+						String fullName = rs.getString("fullName");
 						String nic = rs.getString("NIC");
 						String address = rs.getString("Address");
 						String mobNo = Integer.toString(rs.getInt("MobileNo"));
@@ -142,60 +142,7 @@ public class Appointment {
 
 			}
 			
-			//=======================================VIEW ALL HOSPITALS==============================================
 			
-			public String readHospitals() {
-				String output = "";
-
-				try {
-					Connection con = connect();
-
-					if (con == null) {
-						return "Error while connecting to the database for reading.";
-					}
-
-					// Prepare the html table to be displayed
-					output = "<table border=\"1\"><tr><th>HosptalID</th><th>HospitalName</th><th>Address</th><th>City</th><th>PhoneNo</th><th>Email</th><th>Desc</th><th>OpenHours</th></tr>";
-
-					String query = "select * from hospitals";
-					Statement stmt = con.createStatement();
-					ResultSet rs = stmt.executeQuery(query);
-
-					// iterate through the rows in the result set
-					while (rs.next()) {
-						String hosID = Integer.toString(rs.getInt("Hospital_ID"));
-						String hosName = rs.getString("Hospital_Name");
-						String hosAdd = rs.getString("Hospital_Address");
-						String hosCity = rs.getString("Hospital_City");
-						String hosPhone = Integer.toString(rs.getInt("Hospital_Phone"));
-						String hosEmail = rs.getString("Hospital_Email");
-						String hosDesc = rs.getString("Hospital_Description");
-						String hosOH = Integer.toString(rs.getInt("Open_Hours"));
-
-						// Add into the html table
-						output += "<tr><td>" + hosID + "</td>";
-						output += "<td>" + hosName + "</td>";
-						output += "<td>" + hosAdd + "</td>";
-						output += "<td>" + hosCity + "</td>";
-						output += "<td>" + hosPhone + "</td>";
-						output += "<td>" + hosEmail + "</td>";
-						output += "<td>" + hosDesc + "</td>";
-						output += "<td>" + hosOH + "</td>";
-
-					}
-
-					con.close();
-
-					// Complete the html table
-					output += "</table>";
-				} catch (Exception e) {
-					output = "Error while reading the items.";
-					System.err.println(e.getMessage());
-				}
-
-				return output;
-
-			}
 			
 			
 			
@@ -244,7 +191,7 @@ public class Appointment {
 			
 			//========================================DELETE DOCTORS METHOD============================================================
 			
-			public String deleteDoctor(String docID) {
+			public String deleteDoctor(String appID) {
 				String output = "";
 
 				try {
@@ -255,22 +202,22 @@ public class Appointment {
 					}
 
 					// create a prepared statement
-					String query = "delete from doctors where DoctorID=?";
+					String query = "delete from doctors where AppID=?";
 
 					PreparedStatement preparedStmt = con.prepareStatement(query);
 
 					// binding values
-					preparedStmt.setInt(1, Integer.parseInt(docID));
+					preparedStmt.setInt(1, Integer.parseInt(appID));
 
 					// execute the statement
 					preparedStmt.execute();
 					con.close();
 
-					String newDoctor = readDoctors();    
-					output = "{\"status\":\"success\", \"data\": \"" + newDoctor + "\"}";
+					String newAppointment = readAppointment();    
+					output = "{\"status\":\"success\", \"data\": \"" + newAppointment + "\"}";
 					
 				} catch (Exception e) {
-					output = "{\"status\":\"error\", \"data\":\"Error while updating doctor.\"}";
+					output = "{\"status\":\"error\", \"data\":\"Error while updating appointment.\"}";
 					System.err.println(e.getMessage());
 				}
 
