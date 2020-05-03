@@ -120,13 +120,14 @@ $(document).on("click", ".btnUpdate", function(event) {
 	
 	$("#hidappIDSave").val($(this).closest("tr").find('#hidappIDUpdate').val());     
 	$("#name").val($(this).closest("tr").find('td:eq(0)').text());    
-	$("#nic").val($(this).closest("tr").find('td:eq(1)').text());     
-	$("#address").val($(this).closest("tr").find('td:eq(2)').text());     
-	$("#mobile").val($(this).closest("tr").find('td:eq(3)').text()); 
-	$("#email").val($(this).closest("tr").find('td:eq(4)').text()); 
-	$("#spec").val($(this).closest("tr").find('td:eq(5)').text()); 
+	$("#mobile").val($(this).closest("tr").find('td:eq(1)').text());     
+	$("#email").val($(this).closest("tr").find('td:eq(2)').text());     
+	$("#nic").val($(this).closest("tr").find('td:eq(3)').text()); 
+	$("#address").val($(this).closest("tr").find('td:eq(4)').text()); 
+	$("#date").val($(this).closest("tr").find('td:eq(5)').text()); 
 	$("#hospital").val($(this).closest("tr").find('td:eq(6)').text()); 
-	$("#dept").val($(this).closest("tr").find('td:eq(7)').text()); 
+	$("#doctor").val($(this).closest("tr").find('td:eq(7)').text()); 
+	$("#msg").val($(this).closest("tr").find('td:eq(7)').text()); 
 	
 	$("#alertSuccess").text("Updated successfully.");  
 	$("#alertSuccess").show(); 

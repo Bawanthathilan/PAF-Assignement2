@@ -42,7 +42,7 @@ public class Appointment {
 					}
 
 					// create a prepared statement
-					String query = " insert into appointment (`AppID`,`fullName`,`mobile`,`email`,`nic`, `address`,`date`,`hospName`,`docname`,`msg`)"
+					String query = " insert into appointment (`AppID`,`fullName`,`mobile`,`email`,`nic`, `address`,`date`,`hospName`,`docName`,`msg`)"
 							+ " values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 							
