@@ -28,7 +28,7 @@ $(document).on("click", "#btnSave", function(event) {
 	} 
 
 	// If valid-----------------------  
-	$("#formDoctor").submit(); 
+	$("#formAppointment").submit(); 
 	
 	$("#alertSuccess").text("Inserted successfully.");  
 	$("#alertSuccess").show(); 

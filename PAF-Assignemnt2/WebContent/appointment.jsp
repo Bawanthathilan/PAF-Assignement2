@@ -1,3 +1,4 @@
+<%@page import="com.Appointment"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -65,6 +66,10 @@
 				
 				<br>  
 				<div id="divItemsGrid">   
+					<%    
+						Appointment docObj = new Appointment();
+						out.print(appObj.readAppointment());   
+					%>  
 					
 				</div> 
 				  
