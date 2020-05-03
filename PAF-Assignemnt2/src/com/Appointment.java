@@ -16,7 +16,7 @@ public class Appointment {
 				Connection con = null;
 
 				try {
-					Class.forName("com.mysql.jdbc.Driver");
+					Class.forName("com.mysql.cj.jdbc.Driver");
 					// Provide the correct details: DBServer/DBName, username, password
 					con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/healthcare?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "");
 					System.out.print("Successfully connected from Appointment");
@@ -68,7 +68,7 @@ public class Appointment {
 					output = "{\"status\":\"success\", \"data\": \"" + newAppointment + "\"}";
 					
 				} catch (Exception e) {
-					output = "{\"status\":\"error\", \"data\":\"Error while inserting doctor.\"}";
+					output = "{\"status\":\"error\", \"data\":\"Error while inserting appointment.\"}";
 					System.err.println(e.getMessage());
 				}
 

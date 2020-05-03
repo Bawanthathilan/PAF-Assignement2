@@ -1,5 +1,4 @@
 <%@page import="com.Appointment"%>
-<%@page import="com.AppointmentApi"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -28,7 +27,7 @@
 					
 					<br>
 					 Email:  
-					 <input id="email" name="aemail" type="text" class="form-control form-control-sm">  
+					 <input id="email" name="email" type="text" class="form-control form-control-sm">  
 					 
 					 <br> 
 					 NIC:  
