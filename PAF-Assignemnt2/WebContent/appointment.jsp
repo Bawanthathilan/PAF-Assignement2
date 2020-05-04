@@ -1,4 +1,4 @@
-<%@page import="com.Appointment"%>
+<%@page import="model.Appointment"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -7,7 +7,7 @@
 <meta charset="ISO-8859-1">
 <title>Appointment Management</title>
 <link rel="stylesheet" href="Views/bootstrap.min.css"> 
-<script src="components/jquery-3.2.1.min.js"></script> 
+<script src="components/jquery-3.2.1.min.js"></script>
 <script src="components/main.js"></script>
 </head>
 <body>
@@ -57,7 +57,7 @@
 					 
 					 <br>  
 					 <input id="btnSave" name="btnSave" type="button" value="Save" class="btn btn-primary">  
-					 <input type="hidden" id="hidappIDSave" name="hidappIDSave" value=""> 
+					 <input type="hidden" id="hidAppIDSave" name="hidAppIDSave" value=""> 
 					 
 				</form> 
 				
@@ -81,4 +81,5 @@
 	</div> 
 
 </body>
+
 </html>

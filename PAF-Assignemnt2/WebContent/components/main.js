@@ -1,43 +1,133 @@
-$(document).ready(function() {  
-	
-	if ($("#alertSuccess").text().trim() == "")  {   
+$(document).ready(function() 
+{  
+	if ($("#alertSuccess").text().trim() == "")  
+	{   
 		$("#alertSuccess").hide();  
-		
-	}  
+	} 
 	$("#alertError").hide(); 
-	
-});
+}); 
 
 //SAVE ============================================ 
-$(document).on("click", "#btnSave", function(event) {  
-	
-	// Clear status msges-------------  
+$(document).on("click", "#btnSave", function(event) 
+{  
+	// Clear alerts---------------------  
 	$("#alertSuccess").text("");  
 	$("#alertSuccess").hide();  
 	$("#alertError").text("");  
 	$("#alertError").hide(); 
 
-	// Form validation----------------  
-	var status = validateItemForm(); 
-
-	// If not valid-------------------  
-	if (status != true)  {   
+	// Form validation-------------------  
+	var status = validateHospitalForm();  
+	if (status != true)  
+	{   
 		$("#alertError").text(status);   
 		$("#alertError").show();   
 		return;  
 	} 
 
-	// If valid-----------------------  
-	$("#formAppointment").submit(); 
+	// If valid------------------------  
+	var t = ($("#hidAppIDSave").val() == "") ? "POST" : "PUT";
 	
-	$("#alertSuccess").text("Inserted successfully.");  
-	$("#alertSuccess").show(); 
-	
+	$.ajax(
+	{
+		url : "AppointmentAPI",
+		type : t,
+		data : $("#formAppointment").serialize(),
+		dataType : "text",
+		complete : function(response, status)
+		{
+			onHospitalSaveComplete(response.responseText, status);
+		}
+	});
 }); 
 
-//INSERT ============================================ 
-function validateItemForm() {  
+function onHospitalSaveComplete(response, status){
+	if(status == "success")
+	{
+		var resultSet = JSON.parse(response);
+			
+		if(resultSet.status.trim() == "success")
+		{
+			$("#alertSuccess").text("Successfully Saved.");
+			$("#alertSuccess").show();
+					
+			$("#divItemsGrid").html(resultSet.data);
 	
+		}else if(resultSet.status.trim() == "error"){
+			$("#alertError").text(resultSet.data);
+			$("#alertError").show();
+		}
+	}else if(status == "error"){
+		$("#alertError").text("Error While Saving.");
+		$("#slertError").show();
+	}else{
+		$("#alertError").text("Unknown Error while Saving.");
+		$("#alertError").show();
+	}
+	$("#hidAppIDSave").val("");
+	$("#formAppointment")[0].reset();
+}
+
+//UPDATE========================================== 
+$(document).on("click", ".btnUpdate", function(event) 
+		{     
+	$("#hidAppIDSave").val($(this).closest("tr").find('#hidAppIDUpdate').val());     
+	$("#name").val($(this).closest("tr").find('td:eq(0)').text());    
+	$("#mobile").val($(this).closest("tr").find('td:eq(1)').text());     
+	$("#email").val($(this).closest("tr").find('td:eq(2)').text());     
+	$("#nic").val($(this).closest("tr").find('td:eq(3)').text()); 
+	$("#address").val($(this).closest("tr").find('td:eq(4)').text()); 
+	$("#date").val($(this).closest("tr").find('td:eq(5)').text()); 
+	$("#hospital").val($(this).closest("tr").find('td:eq(6)').text()); 
+	$("#doctor").val($(this).closest("tr").find('td:eq(7)').text()); 
+	$("#msg").val($(this).closest("tr").find('td:eq(8)').text());
+
+});
+
+
+//Remove Operation
+$(document).on("click", ".btnRemove", function(event){
+	$.ajax(
+	{
+		url : "AppointmentAPI",
+		type : "DELETE",
+		data : "appID=" + $(this).data("appID"),
+		dataType : "text",
+		complete : function(response, status)
+		{
+			onHospitalDeletedComplete(response.responseText, status);
+		}
+	});
+});
+
+function onHospitalDeletedComplete(response, status)
+{
+	if(status == "success")
+	{
+		var resultSet = JSON.parse(response);
+			
+		if(resultSet.status.trim() == "success")
+		{
+			$("#alertSuccess").text("Successfully Deleted.");
+			$("#alertSuccess").show();
+					
+			$("#divItemsGrid").html(resultSet.data);
+	
+		}else if(resultSet.status.trim() == "error"){
+			$("#alertError").text(resultSet.data);
+			$("#alertError").show();
+		}
+	}else if(status == "error"){
+		$("#alertError").text("Error While Deleting.");
+		$("#alertError").show();
+	}else{
+		$("#alertError").text("Unknown Error While Deleting.");
+		$("#alertError").show();
+	}
+}
+
+//CLIENTMODEL
+function validateHospitalForm() {  
 	// NAME  
 	if ($("#name").val().trim() == "")  {   
 		return "Insert fullName.";  
@@ -104,32 +194,3 @@ function validateItemForm() {
 	 return true; 
 	 
 }
-
-
-//REMOVE========================================== 
-$(document).on("click", ".btnRemove", function(event) {  
-	
-	$(this).closest("tr").remove();    
-	$("#alertSuccess").text("Removed successfully.");  
-	$("#alertSuccess").show(); 
-	
-});
-
-//UPDATE========================================== 
-$(document).on("click", ".btnUpdate", function(event) {     
-	
-	$("#hidappIDSave").val($(this).closest("tr").find('#hidappIDUpdate').val());     
-	$("#name").val($(this).closest("tr").find('td:eq(0)').text());    
-	$("#mobile").val($(this).closest("tr").find('td:eq(1)').text());     
-	$("#email").val($(this).closest("tr").find('td:eq(2)').text());     
-	$("#nic").val($(this).closest("tr").find('td:eq(3)').text()); 
-	$("#address").val($(this).closest("tr").find('td:eq(4)').text()); 
-	$("#date").val($(this).closest("tr").find('td:eq(5)').text()); 
-	$("#hospital").val($(this).closest("tr").find('td:eq(6)').text()); 
-	$("#doctor").val($(this).closest("tr").find('td:eq(7)').text()); 
-	$("#msg").val($(this).closest("tr").find('td:eq(8)').text()); 
-	
-	$("#alertSuccess").text("Updated successfully.");  
-	$("#alertSuccess").show(); 
-	
-});
