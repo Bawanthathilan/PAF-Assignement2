@@ -44,14 +44,14 @@ public class AppointmentApi extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String result = appObj.insertAppointment(request.getParameter("fullName"), 
+		String result = appObj.insertAppointment(request.getParameter("name"), 
 				request.getParameter("mobile"), 
 				request.getParameter("email"), 
 				request.getParameter("nic"), 
 				request.getParameter("address"), 
 				request.getParameter("date"), 
-				request.getParameter("hospName"), 
-				request.getParameter("docName"), 
+				request.getParameter("hospital"), 
+				request.getParameter("doctor"), 
 				request.getParameter("msg"));
 		
 		response.getWriter().write(result);
@@ -88,14 +88,14 @@ public class AppointmentApi extends HttpServlet {
 		Map<String, String> param = getParasMap(request);
 		
 		String result = appObj.updateAppointment(param.get("hidAppIDSave").toString(),
-				param.get("fullName").toString(),     
+				param.get("name").toString(),     
 		 		param.get("mobile").toString(),        
 		 		param.get("email").toString(),        
 		 		param.get("nic").toString(),
 		 		param.get("address").toString(),
 		 		param.get("date").toString(),
-		 		param.get("hospName").toString(),
-		 		param.get("docName").toString(),
+		 		param.get("hospital").toString(),
+		 		param.get("doctor").toString(),
  				param.get("msg").toString());
 		
 		response.getWriter().write(result);

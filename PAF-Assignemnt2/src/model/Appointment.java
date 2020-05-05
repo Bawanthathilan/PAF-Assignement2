@@ -65,7 +65,7 @@ public class Appointment {
 						String msg = rs.getString("msg");
 					  // Add into the html table    
 
-					  output += "<tr><td><input id='hidappIDUpdate' name='hidappIDUpdate' type='hidden' value='" + appID + "'>" + fullName + "</td>"; 
+					  output += "<tr><td><input id='hidAppIDUpdate' name='hidAppIDUpdate' type='hidden' value='" + appID + "'>" + fullName + "</td>"; 
 
 					  output += "<td>" + mobile + "</td>";
 						output += "<td>" + email + "</td>";
@@ -95,7 +95,7 @@ public class Appointment {
 				return output;
 			}
 		
-		//Insert Hospitals
+		//Insert appointment
 		public String insertAppointment(String fullName, String mobile, String email, String nic, String address, String date, String hospName , String docName , String msg) {
 			String output = "";
 
@@ -107,7 +107,7 @@ public class Appointment {
 				}
 
 				// create a prepared statement   
-				String query = " insert into appointment (`AppID`,`fullName`,`mobile`,`email`,`nic`, `address`,`date`,`hospName`,`docName`,`msg`)"+" values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+				String query = " insert into appointment (`appID`,`fullName`,`mobile`,`email`,`nic`, `address`,`date`,`hospName`,`docName`,`msg`)"+" values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 				PreparedStatement preparedStmt = con.prepareStatement(query);
 
