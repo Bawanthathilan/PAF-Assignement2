@@ -88,15 +88,15 @@ public class AppointmentApi extends HttpServlet {
 		Map<String, String> param = getParasMap(request);
 		
 		String result = appObj.updateAppointment(param.get("hidAppIDSave").toString(),
-				param.get("name").toString(),     
+				param.get("name").toString().toString().replace("+", " "),     
 		 		param.get("mobile").toString(),        
-		 		param.get("email").toString(),        
+		 		param.get("email").toString().toString().replace("%40", "@"),        
 		 		param.get("nic").toString(),
-		 		param.get("address").toString(),
-		 		param.get("date").toString(),
-		 		param.get("hospital").toString(),
-		 		param.get("doctor").toString(),
- 				param.get("msg").toString());
+		 		param.get("address").toString().toString().replace("+", " "), 
+		 		param.get("date").toString().toString().replace("+", " "), 
+		 		param.get("hospital").toString().toString().replace("+", " "), 
+		 		param.get("doctor").toString().toString().replace("+", " "), 
+ 				param.get("msg").toString().toString().replace("+", " ") );
 		
 		response.getWriter().write(result);
 	}
