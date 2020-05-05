@@ -140,7 +140,7 @@ public class Appointment {
 			 return output; 
 		}
 		
-		//Update hospitals
+		//Update appointment
 		public String updateAppointment(String appID, String fullName, String mobile, String email, String nic, String address, String date, String hospName, String docName , String msg )  {   
 			String output = ""; 
 		 
